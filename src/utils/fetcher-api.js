@@ -41,10 +41,34 @@ const requests = {
   patch: (url, body) => axios.patch(url, body, headers).then(responseBody),
 };
 
-export const Auth = {
-  register: (form) => requests.post("/auth/register", form),
-  login: (form) => requests.post("/auth/login", form),
-  logout: () => requests.post("/auth/logout"),
-  me: () => requests.post("/auth/me"),
-  resetPassword: (form) => requests.post("/auth/resetPassword", form),
+export const Contact = {
+  list: (form) =>
+    requests.get(
+      `/contact?currentPage=${form.currentPage}&itemPerPage=${form.itemPerPage}`
+    ),
+  show: (id) => requests.get(`/contact/${id}`),
+  create: (form) => requests.post(`/contact/store`, form),
+  update: (id, form) => requests.put(`/contact/update/${id}`, form),
+  delete: (id) => requests.del(`/contact/destroy/${id}`),
+  isAlreadyExist: (form) => requests.post(`/contact/isAlreadyExist`, form),
+};
+
+export const Organisation = {
+  list: (form) =>
+    requests.get(
+      `/organisation?currentPage=${form.currentPage}&itemPerPage=${form.itemPerPage}`
+    ),
+  show: (id) => requests.get(`/organisation/${id}`),
+  create: (form) => requests.post(`/organisation/store`, form),
+  update: (id, form) => requests.put(`/organisation/update/${id}`, form),
+  delete: (id) => requests.del(`/organisation/destroy/${id}`),
+  isAlreadyExist: (form) => requests.post(`/organisation/isAlreadyExist`, form),
+};
+
+export const ContactOrganisation = {
+  list: (form) =>
+    requests.get(
+      `/contact-organisation?currentPage=${form.currentPage}&itemPerPage=${form.itemPerPage}`
+    ),
+  show: (contactId) => requests.get(`/contact-organisation/${contactId}`),
 };

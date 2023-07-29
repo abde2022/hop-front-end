@@ -4,24 +4,30 @@ import "App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // @components
 import Error from "components/error";
+import { theme } from "components/theme";
+import { ThemeProvider } from "@mui/material/styles";
+// @layouts
+import ListingContactOrganisation from "layouts/contact-organisation/listing-contact-organisation";
 
 function App() {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <h1>welcome Page !</h1>
-              </>
-            }
-          />
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <ListingContactOrganisation />
+                </>
+              }
+            />
 
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </Router>
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </Router>
+      </ThemeProvider>
     </>
   );
 }
